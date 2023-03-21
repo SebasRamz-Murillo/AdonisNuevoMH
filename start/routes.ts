@@ -48,11 +48,7 @@ Route.delete('/mapas/eliminar/:id', 'MapasController.eliminarMapa')
 Route.get('/mapas/stream', 'MapasController.streamMapas')
 
 
-Route.post('/ingrediente', 'IngredientesController.registrarIngrediente')
-Route.get('/ingrediente/info', 'IngredientesController.obtenerIngredientes')
-Route.get('/ingrediente/info/:id', 'IngredientesController.obtenerIngrediente')
-Route.put('/ingrediente/update/:id', 'IngredientesController.actualizarIngrediente')
-Route.delete('/ingrediente/delete/:id', 'IngredientesController.eliminarIngrediente')
+
 Route.get('/stream', 'IngredientesController.streamIngredientes')
 
 Route.group(() => {
@@ -86,3 +82,8 @@ Route.group(() => {
 
 }).middleware(['activo', 'auth'])
 
+Route.post('/ingrediente', 'IngredientesController.registrarIngrediente')
+Route.get('/ingrediente/info', 'IngredientesController.obtenerIngredientes')
+Route.get('/ingrediente/info/:id', 'IngredientesController.obtenerIngrediente').where('id', '[0-9]+')
+Route.put('/ingrediente/update/:id', 'IngredientesController.actualizarIngrediente').where('id', '[0-9]+')
+Route.delete('/ingrediente/delete/:id', 'IngredientesController.eliminarIngrediente').where('id', '[0-9]+')
